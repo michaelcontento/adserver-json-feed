@@ -52,7 +52,7 @@
     <div class="wrapper">
       <h2 id='using_the_api'>Using the API</h2>
 
-<p>Given you have a list of placements each identified by an unique ID. For each of those placements you want to display or deliver ads from our network. For accessing those ads we provide an API which we also use internally. This API accepts some paramters which will be further discussed in other chapters. The following chapter will give you a first glance on the API, how the response will look like and what caveats there are.</p>
+<p>Given you have a list of placements each identified by an unique ID. For each of those placements you want to display or deliver ads from our network. For accessing those ads we provide an API which we also use internally. This API accepts some parameters which will be further discussed in other chapters. The following chapter will give you a first glance on the API, how the response will look like and what caveats there are.</p>
       <div id="subCol">
         <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
         <ol class="chapters">
@@ -121,7 +121,7 @@ http://a.adcloud.net/adcloud/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&am
 </div>
 <h3 id='the_adobject'>The Ad-Object</h3>
 
-<p>You can always find a detailed description of the the entire <a href='https://raw.github.com/adcloud/adserver-json-feed/master/source/feed-schema.json'>feed</a>, the <a href='https://raw.github.com/adcloud/adserver-json-feed/master/source/ad-schema.json'>ad object</a> an the <a href='https://raw.github.com/adcloud/adserver-json-feed/master/source/ad-image-schema.json'>ad image object</a> for our feed. But for now let us have a look at the most important attributes of an ad:</p>
+<p>You can find a detailed description of the the entire feed as <a href='https://github.com/adcloud/adserver-json-feed/tree/master/source/schema'>JSON Schema</a>. But for now let us have a look at the most important attributes of an ad:</p>
 
 <ul>
 <li>
@@ -157,7 +157,7 @@ http://a.adcloud.net/adcloud/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&am
 </li>
 
 <li>
-<p><code>images</code> - A list of all available images. The structure should be quite self-explanatory. For further information have a look in the JSON Schema.</p>
+<p><code>images</code> - A list of all available images. The structure should be quite self-explanatory. For further information have a look in the <a href='https://github.com/adcloud/adserver-json-feed/tree/master/source/schema'>JSON Schema</a>.</p>
 </li>
 </ul>
 <div class='note'><p>When you consume the feed please make sure, that we will only send out ads that are valid at the time of your request. And still this selection could be a subset of a bigger collection of ads. If you need to know which ads are new and which were deleted between two subsequent requests, you have to implement such logic in your side.</p></div>
@@ -186,11 +186,25 @@ var url = 'http://t.adcloud.net/t.gif' +
 <p>The code requires the following preconditions:</p>
 
 <ul>
-<li>You requested the JSON feed for a given placement ID</li>
+<li>
+<p>You requested the JSON feed for a given placement ID</p>
+</li>
 
-<li>You create a <code>static_placement</code> based on static metadata we will provide you before hand</li>
+<li>
+<p>You create a <code>static_placement</code> based on static metadata we will provide you before hand. The corresponding object should look something like the following:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+static_placement = {
+  id: 4711,        // The ID of the placement
+  topic: &quot;Health&quot;, // The topic of the placement
+  page_type: 0     // An internal identifier
+}
+</pre>
+</div></li>
 
-<li>You need the <code>current_ad</code> from the list of all received ads based on its display position</li>
+<li>
+<p>You need the <code>current_ad</code> from the list of all received ads based on its display position</p>
+</li>
 </ul>
 
 <h3 id='postview_image'>Postview Image</h3>
