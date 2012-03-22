@@ -246,7 +246,7 @@ document.write('&lt;iframe '
 <li><code>sizes</code> - The sizes of the single ad &#8220;slots&#8221;. This parameter can be a comma separated list of dimension strings (i.e.: <code>120x85,240x150</code>).</li>
 </ul>
 
-<p>The feed will always contain <strong>all</strong> ads, that <em>either</em> fit in a single slot <em>or</em> the entire placement. We will only filter the ads, but <strong>not</strong> the images within an ad. Thus an ad will always contain all images, even if only one will fit the given placement.</p>
+<p>The feed can contain both, display and image-text ads. For display ads we filter all those ads, that don&#8217;t match the given dimension. In the case of an image-text ad we will pre-filter those ads that doesn&#8217;t match the given sizes. If more then one size is given, the ad must only fit one of them.</p>
 
 <h3 id='redirect_url'>Redirect URL</h3>
 
