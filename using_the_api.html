@@ -65,9 +65,13 @@
   <div id="container">
     <div class="wrapper">
       <div id="mainCol">
-        <p>The main argument you have to provide when calling the API, is the ID of the placement for which you need information abouts its possible ads. For each placement there is a list of ads from which the client can choose to display a selection. This list can be accessed via an JSON feed from the adcloud adserver. To give you a first impression of what the data look like we provide an <a href='http://a.adcloud.net/adcloud/3691?dimension=728x90&amp;sizes=158x90,158x90'>example feed</a>.</p>
-
-<p>The example feed consists of 25 ads, which is the maximum amount of ads you will receive at this point when consuming the feed for a placement:</p>
+        <p>The main argument you have to provide when calling the API, is the ID of the placement for which you need information abouts its possible ads. For each placement there is a list of ads from which the client can choose to display a selection. This list can be accessed via an JSON feed from the adcloud adserver:</p>
+<div class='code_container'>
+<pre class='brush: plain; gutter: false; toolbar: false'>
+http://a.adcloud.net/adcloud/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&amp;sizes=&lt;SIZES&gt;
+</pre>
+</div>
+<p>To give you a first impression of what the data look like we provide an <a href='http://a.adcloud.net/adcloud/3691?dimension=728x90&amp;sizes=158x90,158x90'>example feed</a>. The example feed consists of 25 ads, which is the maximum amount of ads you will receive at this point when consuming the feed for a placement:</p>
 <div class='code_container'>
 <pre class='brush: javascript; gutter: false; toolbar: false'>
 {
@@ -218,6 +222,18 @@ document.write('&lt;iframe '
 
 <p>A complete view tracking example can be found as a <a href='https://gist.github.com/a5c5ac329da156c2c68a'>Gist on GitHub</a>.</p>
 
+<h3 id='dimension_and_sizes'>Dimension and Sizes</h3>
+
+<p>As you could see in the example feed URL there are two more parameters: <code>dimension</code> and <code>sizes</code>. There meaning is described as the following:</p>
+
+<ul>
+<li><code>dimension</code> - Dimension of the complete placement. The dimension have to be defined in the format <code>WIDTHxHEIGHT</code> (i.e.: <code>125x100</code>).</li>
+
+<li><code>sizes</code> - The sizes of the single ad &#8220;slots&#8221;. This parameter can be a comma separated list of dimension strings (i.e.: <code>120x85,240x150</code>).</li>
+</ul>
+
+<p>The feed will always contain <strong>all</strong> ads, that <em>either</em> fit in a single slot <em>or</em> the entire placement. We will only filter the ads, but <strong>not</strong> the images within an ad. Thus an ad will always contain all images, even if only one will fit the given placement.</p>
+
 <h3 id='redirect_url'>Redirect URL</h3>
 
 <p>So far we only looked at counting ad impressions. Another important part to take care of when displaying ads, is the URL to which the user will be redirected after actually clicking the ad. That URL is stored in the <code>url</code> field. We not only count the ad impressions but also count the clicks from the user. Due to this every click have to be routed through our system. For that reasons <em>every</em> URL have to be properly encoded on the client site. We can not provide you the encoded URL because you need to add some query parameters first. Again, here is another Javascript example of how to construct the URL for a given ad. The variables <code>static_placement</code> and <code>current_ad</code> have the same meaning as in the examples before:</p>
@@ -266,7 +282,8 @@ var result_url = 'http://a.adcloud.net/redirect/'
     + '&amp;ac_b=85173'
     + '&amp;ac_ci=1047';
 </pre>
-</div><div class='note'><p>We use a slightly modified Base64 encoding where we replace `/` with `*` and `=` with `@`. You can find the Javascript [code for this encoding here][5].</p></div>
+</div><!-- unfortunatly this has to be done like this. It is not possible to
+use markdown within an IMPORTANT section --><div class='warning'><p>We use a slightly modified Base64 encoding where we replace     <code>/</code> with <code>*</code> and <code>=</code> with     <code>@</code>. You can find the Javascript <a href='https://gist.github.com/09fb127bd28a57091117'>code for this     encoding here</a>.</p></div>
 <h3 id='feedback'>Feedback</h3>
 
 <p>This guide should enable you to use and integrate the Adserver JSON Feed with your systems. We try to anticipate problems and describe them here, so that you don&#8217;t have to run into them by yourself. A straight forward description of the API is our goal.</p>
