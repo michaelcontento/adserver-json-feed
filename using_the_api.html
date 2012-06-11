@@ -19,7 +19,7 @@
 <body class="guide">
   <div id="topNav">
     <div class="wrapper">
-      
+
 
     </div>
   </div>
@@ -56,7 +56,7 @@
       <div id="subCol">
         <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
         <ol class="chapters">
-          
+
         </ol>
       </div>
     </div>
@@ -68,10 +68,10 @@
         <p>The main argument you have to provide when calling the API, is the ID of the placement for which you need information abouts its possible ads. For each placement there is a list of ads from which the client can choose to display a selection. This list can be accessed via an JSON feed from the adcloud adserver:</p>
 <div class='code_container'>
 <pre class='brush: plain; gutter: false; toolbar: false'>
-http://a.adcloud.net/adcloud/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&amp;sizes=&lt;SIZES&gt;
+http://a.adcloud.net/feed/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&amp;sizes=&lt;SIZES&gt;
 </pre>
 </div>
-<p>To give you a first impression of what the data look like we provide an <a href='http://a.adcloud.net/adcloud/3691?dimension=728x90&amp;sizes=158x90,158x90'>example feed</a>. The example feed consists of 25 ads, which is the maximum amount of ads you will receive at this point when consuming the feed for a placement:</p>
+<p>To give you a first impression of what the data look like we provide an <a href='http://a.adcloud.net/feed/3691?dimension=728x90&amp;sizes=158x90,158x90'>example feed</a>. The example feed consists of 25 ads, which is the maximum amount of ads you will receive at this point when consuming the feed for a placement:</p>
 <div class='code_container'>
 <pre class='brush: javascript; gutter: false; toolbar: false'>
 {
@@ -310,7 +310,7 @@ use markdown within an IMPORTANT section --><div class='warning'><p>We use a sli
   <hr class="hide" />
   <div id="footer">
     <div class="wrapper">
-      
+
   <p>This work is licensed under a
     <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution Share Alike 3.0</a>
     license.
